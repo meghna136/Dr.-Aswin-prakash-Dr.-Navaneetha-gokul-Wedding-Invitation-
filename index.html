@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aswin & Navaneetha - Wedding Invitation</title>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Cinzel:wght@400;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        themeDark: '#4A151C',      /* Deep Burgundy/Maroon matching the Groom's Kurta */
+                        themeBg: '#FAFAF7',        /* Soft Ivory/Cream for Main Background */
+                        themeSection: '#EBF0EA',   /* Soft Pastel Sage Green matching the Bride's Saree */
+                        themeAccent: '#C9A66B',    /* Warm Champagne Gold for Borders/Accents */
+                    },
+                    fontFamily: {
+                        heading: ['"Playfair Display"', 'serif'],
+                        body: ['"Lora"', 'serif'],
+                        cinzel: ['"Cinzel"', 'serif'],
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        html { scroll-behavior: smooth; }
+        body { 
+            background-color: #FAFAF7; 
+            background-image: url('https://www.transparenttextures.com/patterns/cream-paper.png');
+        }
+        
+        /* Fade Animations */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 1s ease-out, transform 1s ease-out;
+        }
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Overlay Transition */
+        #welcome-overlay {
+            transition: opacity 1s ease-in-out;
+        }
+
+        /* Traditional Border Pattern */
+        .kerala-border {
+            border: 2px solid #C9A66B;
+            padding: 4px;
+            position: relative;
+        }
+        .kerala-border::after {
+            content: '';
+            position: absolute;
+            top: 2px; left: 2px; right: 2px; bottom: 2px;
+            border: 1px solid rgba(201, 166, 107, 0.5);
+            pointer-events: none;
+        }
+    </style>
+</head>
+<body class="font-body text-themeDark antialiased selection:bg-themeDark selection:text-themeBg">
+
+    <!-- Welcome Overlay -->
+    <div id="welcome-overlay" class="fixed inset-0 z-50 flex items-center justify-center bg-themeSection text-themeDark flex-col px-4">
+        <div class="absolute inset-0 opacity-30 bg-[url('https://www.transparenttextures.com/patterns/stardust.png')] pointer-events-none"></div>
+        
+        <div class="z-10 text-center flex flex-col items-center">
+            <!-- Aesthetic Floral Divider -->
+            <div class="flex justify-center mb-6">
+                <svg width="150" height="40" viewBox="0 0 150 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M75 20 C60 5, 30 10, 10 20 C30 30, 60 35, 75 20 Z" fill="#C9A66B" opacity="0.6"/>
+                    <path d="M75 20 C90 5, 120 10, 140 20 C120 30, 90 35, 75 20 Z" fill="#C9A66B" opacity="0.6"/>
+                    <circle cx="75" cy="20" r="5" fill="#4A151C"/>
+                    <path d="M10 20 L0 20 M140 20 L150 20" stroke="#C9A66B" stroke-width="1.5"/>
+                </svg>
+            </div>
+
+            <h1 class="font-heading text-4xl md:text-6xl mb-6">Aswin & Navaneetha</h1>
+            <p class="mb-10 font-body text-lg italic text-themeDark/80">We joyfully invite you to our wedding celebration.</p>
+            
+            <button id="open-invitation" class="group relative px-8 py-3 bg-transparent border-2 border-themeAccent text-themeDark font-heading text-xl uppercase tracking-widest hover:bg-themeAccent hover:text-white transition-all duration-500 overflow-hidden cursor-pointer pointer-events-auto shadow-sm bg-white/40">
+                <span class="relative z-10">Open Invitation</span>
+                <div class="absolute inset-0 h-full w-0 bg-themeAccent transition-all duration-500 ease-out group-hover:w-full z-0"></div>
+            </button>
+        </div>
+    </div>
+
+    <!-- Hidden Local MP3 Audio Player -->
+    <audio id="music-player" loop>
+        <source src="music.mp3" type="audio/mpeg">
+    </audio>
+
+    <!-- Sticky Navigation (Bottom) -->
+    <nav class="fixed bottom-0 left-0 w-full z-40 bg-themeBg/95 backdrop-blur-sm border-t border-themeAccent/30 shadow-md transition-all duration-300">
+        <div class="max-w-5xl mx-auto px-4">
+            <ul class="flex justify-center space-x-6 md:space-x-12 py-4 font-heading text-sm md:text-base uppercase tracking-wider text-themeDark">
+                <li><a href="#home" class="hover:text-themeAccent transition duration-300">Home</a></li>
+                <li><a href="#family" class="hover:text-themeAccent transition duration-300">Family</a></li>
+                <li><a href="#events" class="hover:text-themeAccent transition duration-300">Events</a></li>
+                <li><a href="#countdown-section" class="hover:text-themeAccent transition duration-300 font-bold">Save The Date</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Main Content wrapper -->
+    <main class="overflow-hidden pb-16 md:pb-20">
+
+        <!-- Hero Section -->
+        <section id="home" class="relative pt-12 pb-20 md:pt-20 md:pb-32 px-4 flex flex-col items-center text-center">
+            <div class="fade-in max-w-4xl w-full">
+                
+                <p class="text-themeAccent tracking-[0.2em] uppercase text-xs md:text-sm mb-4 font-body font-semibold">
+                    With the blessings of God and family
+                </p>
+                
+                <h1 class="font-cinzel text-4xl md:text-6xl lg:text-7xl text-themeDark mb-6 leading-tight font-bold">
+                    Dr. Aswin Prakash <br class="md:hidden"> 
+                    <span class="text-themeAccent text-3xl md:text-5xl mx-2">&</span> <br class="md:hidden">
+                    Dr. Navaneetha Gokul
+                </h1>
+
+                <!-- Aesthetic Floral Divider -->
+                <div class="flex justify-center mb-10">
+                    <svg width="150" height="40" viewBox="0 0 150 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M75 20 C60 5, 30 10, 10 20 C30 30, 60 35, 75 20 Z" fill="#C9A66B" opacity="0.6"/>
+                        <path d="M75 20 C90 5, 120 10, 140 20 C120 30, 90 35, 75 20 Z" fill="#C9A66B" opacity="0.6"/>
+                        <circle cx="75" cy="20" r="5" fill="#4A151C"/>
+                        <path d="M10 20 L0 20 M140 20 L150 20" stroke="#C9A66B" stroke-width="1.5"/>
+                    </svg>
+                </div>
+
+                <!-- Traditional Kerala Couple Photo -->
+                <div class="kerala-border mx-auto max-w-md md:max-w-lg lg:max-w-xl rounded-t-full overflow-hidden shadow-2xl mb-8 relative z-10 bg-white">
+                    <img src="image.jpeg" alt="Aswin and Navaneetha" class="w-full h-[400px] md:h-[500px] object-cover object-top hover:scale-105 transition duration-700" />
+                </div>
+
+                <div class="mb-12 px-4">
+                    <p class="text-themeDark text-lg md:text-xl italic font-heading max-w-2xl mx-auto">
+                        "Two souls with but a single thought, two hearts that beat as one."
+                    </p>
+                </div>
+
+                <p class="text-themeDark text-xl md:text-2xl italic font-heading">
+                  We warmly invite you to <br class="hidden md:block"> bear witness to the beginning of our beautiful forever.
+                </p>
+            </div>
+        </section>
+
+        <!-- Our Family Section -->
+        <section id="family" class="py-20 bg-themeSection text-themeDark relative border-y border-themeAccent/20">
+            <div class="absolute inset-0 opacity-20 bg-[url('https://www.transparenttextures.com/patterns/stardust.png')] pointer-events-none"></div>
+            
+            <div class="max-w-6xl mx-auto px-4 relative z-10 fade-in">
+                
+                <!-- Aesthetic Floral Divider -->
+                <div class="flex justify-center mb-6">
+                    <svg width="150" height="40" viewBox="0 0 150 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M75 20 C60 5, 30 10, 10 20 C30 30, 60 35, 75 20 Z" fill="#C9A66B" opacity="0.6"/>
+                        <path d="M75 20 C90 5, 120 10, 140 20 C120 30, 90 35, 75 20 Z" fill="#C9A66B" opacity="0.6"/>
+                        <circle cx="75" cy="20" r="5" fill="#4A151C"/>
+                        <path d="M10 20 L0 20 M140 20 L150 20" stroke="#C9A66B" stroke-width="1.5"/>
+                    </svg>
+                </div>
+
+                <div class="text-center mb-16">
+                    <h2 class="text-4xl md:text-5xl font-heading text-themeDark mb-4">Our Family</h2>
+                </div>
+
+                <div class="grid md:grid-cols-2 gap-8 md:gap-16">
+                    <!-- Groom's Family -->
+                    <div class="bg-white/60 border border-themeAccent/40 p-8 md:p-12 text-center rounded-sm shadow-sm">
+                        <h3 class="text-2xl font-heading text-themeAccent mb-6 uppercase tracking-wider">The Groom's Family</h3>
+                        
+                        <div class="space-y-6 font-body">
+                            <div>
+                                <h4 class="text-xs uppercase tracking-[0.2em] text-themeDark/70 mb-1">Son of</h4>
+                                <p class="text-lg md:text-xl font-medium">Mr. Prakasan T. P. & Mrs. Pushpa G. N.</p>
+                                <p class="text-sm text-themeDark/80 mt-1">Koodayil, Cheruvannur</p>
+                            </div>
+                            
+                            <div>
+                                <h4 class="text-xs uppercase tracking-[0.2em] text-themeDark/70 mb-1">Grandson of </h4>
+                                <p class="text-base">Late Narayanan & Lakshmi</p>
+                                <p class="text-base text-themeAccent">&</p>
+                                <p class="text-base">Late Govindan & Narayani</p>
+                            </div>
+
+                            <div>
+                                <h4 class="text-xs uppercase tracking-[0.2em] text-themeDark/70 mb-1">Brother of</h4>
+                                <p class="text-lg">Meghna Prakash</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Bride's Family -->
+                    <div class="bg-white/60 border border-themeAccent/40 p-8 md:p-12 text-center rounded-sm shadow-sm">
+                        <h3 class="text-2xl font-heading text-themeAccent mb-6 uppercase tracking-wider">The Bride's Family</h3>
+                        
+                      <div class="space-y-6 font-body ">
+                            <div>
+                                <h4 class="text-xs uppercase tracking-[0.2em] text-themeDark/70 mb-1">Daughter of</h4>
+                                <p class="text-lg md:text-xl font-medium">Mr. Gokul Raj & Mrs. Reena Gokul M.</p>
+                                <p class="text-sm text-themeDark/80 mt-1">"Amrit" Podikundu, Kannur</p>
+                            </div>
+                            <div class="h-2"></div>
+                            </div>
+                              <h4 class="text-xs uppercase tracking-[0.2em] text-themeDark/70 mb-1">Sister of</h4>
+                             <p class="text-lg">Amritha Gokul</p>
+                            </div>
+                     </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Events Section -->
+        <section id="events" class="py-20 bg-themeBg relative">
+            <div class="max-w-6xl mx-auto px-4 fade-in">
+
+                <!-- Aesthetic Floral Divider -->
+                <div class="flex justify-center mb-6">
+                    <svg width="150" height="40" viewBox="0 0 150 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M75 20 C60 5, 30 10, 10 20 C30 30, 60 35, 75 20 Z" fill="#C9A66B" opacity="0.6"/>
+                        <path d="M75 20 C90 5, 120 10, 140 20 C120 30, 90 35, 75 20 Z" fill="#C9A66B" opacity="0.6"/>
+                        <circle cx="75" cy="20" r="5" fill="#4A151C"/>
+                        <path d="M10 20 L0 20 M140 20 L150 20" stroke="#C9A66B" stroke-width="1.5"/>
+                    </svg>
+                </div>
+
+                <div class="text-center mb-16">
+                    <h2 class="text-4xl md:text-5xl font-heading text-themeDark mb-4">Wedding Events</h2>
+                </div>
+
+                <div class="grid md:grid-cols-2 gap-8 lg:gap-12">
+                    
+                    <!-- Wedding Ceremony -->
+                    <div class="relative bg-white p-8 md:p-10 shadow-sm border border-themeSection text-center kerala-border flex flex-col h-full">
+                        <div class="absolute -top-6 left-1/2 -translate-x-1/2 bg-themeBg px-4 py-2 border border-themeAccent rounded-full text-themeAccent shadow-sm">
+                          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z"></path>
+                           </svg>
+                        </div>
+                        <h3 class="text-2xl md:text-3xl font-heading text-themeDark mt-4 mb-2">Wedding Ceremony</h3>
+                        <p class="font-body italic text-themeDark/70 mb-6">Thursday, 31st December 2026</p>
+                        
+                        <div class="space-y-4 font-body text-themeDark/90 flex-grow">
+                            <div class="pb-4 border-b border-themeSection">
+                                <p class="font-semibold text-lg">Muhurtham</p>
+                                <p>10:30 AM - 11:00 AM</p>
+                            </div>
+                            <div class="pt-2 mb-2">
+                                <p class="font-semibold text-lg text-themeDark">Dhanalakshmi Convention Center</p>
+                                <p class="text-sm text-themeDark/80">(Old Sadhu), Kannur</p>
+                            </div>
+                            
+                            <!-- QR Code Embed -->
+                            <div class="w-full flex flex-col items-center mt-6 border-t border-themeSection pt-6">
+                                <p class="text-sm font-heading mb-3 text-themeDark font-bold uppercase tracking-widest">Scan for Location</p>
+                                <div class="p-2 border border-themeAccent/50 bg-themeBg inline-block shadow-sm">
+                                    <img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://maps.google.com/?q=Dhanalakshmi+Convention+Center+Kannur" alt="QR Code to Ceremony Location" class="w-32 h-32">
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <a href="https://www.google.com/maps/dir/?api=1&destination=Dhanalakshmi+Convention+Center,+Kannur" target="_blank" 
+                           class="inline-block mt-8 px-6 py-3 border border-themeDark text-themeDark hover:bg-themeSection transition duration-300 rounded-sm font-medium text-sm tracking-wider uppercase relative z-20 cursor-pointer pointer-events-auto">
+                            View Full Directions
+                        </a>
+                    </div>
+
+                    <!-- Reception -->
+                    <div class="relative bg-white p-8 md:p-10 shadow-sm border border-themeSection text-center kerala-border flex flex-col h-full">
+                        <div class="absolute -top-6 left-1/2 -translate-x-1/2 bg-themeBg px-4 py-2 border border-themeAccent rounded-full text-themeAccent shadow-sm">
+                           <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12z"></path>
+                            </svg>
+                        </div>
+                        <h3 class="text-2xl md:text-3xl font-heading text-themeDark mt-4 mb-2">Wedding Reception</h3>
+                        <p class="font-body italic text-themeDark/70 mb-6">Saturday, 2nd January 2027</p>
+                        <p>4:00 PM - 9:00 PM</p>
+                        <div class="space-y-4 font-body text-themeDark/90 flex-grow">
+                            <div class="pt-2 mb-2">
+                                <p class="font-semibold text-lg text-themeDark">Puzhayoram Auditorium</p>
+                                <p class="text-sm text-themeDark/80">Chaniyam Kadavu</p>
+                            </div>
+                            
+                            <!-- QR Code Embed -->
+                            <div class="w-full flex flex-col items-center mt-6 border-t border-themeSection pt-6">
+                                <p class="text-sm font-heading mb-3 text-themeDark font-bold uppercase tracking-widest">Scan for Location</p>
+                                <div class="p-2 border border-themeAccent/50 bg-themeBg inline-block shadow-sm">
+                                    <img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://maps.google.com/?q=Puzhayoram+Auditorium+Chaniyam+Kadavu" alt="QR Code to Reception Location" class="w-32 h-32">
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <a href="https://www.google.com/maps/dir/?api=1&destination=Puzhayoram+Auditorium,+Chaniyam+Kadavu" target="_blank" 
+                           class="inline-block mt-8 px-6 py-3 border border-themeDark text-themeDark hover:bg-themeSection transition duration-300 rounded-sm font-medium text-sm tracking-wider uppercase relative z-20 cursor-pointer pointer-events-auto">
+                            View Full Directions
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Save The Date & Countdown -->
+        <section id="countdown-section" class="py-24 bg-themeSection text-themeDark relative overflow-hidden border-t border-themeAccent/20">
+            <div class="absolute inset-0 opacity-30 bg-[url('https://www.transparenttextures.com/patterns/stardust.png')] pointer-events-none"></div>
+            
+            <div class="max-w-4xl mx-auto px-4 relative z-10 fade-in text-center">
+                
+                <!-- Aesthetic Floral Divider -->
+                <div class="flex justify-center mb-8">
+                    <svg width="150" height="40" viewBox="0 0 150 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M75 20 C60 5, 30 10, 10 20 C30 30, 60 35, 75 20 Z" fill="#C9A66B" opacity="0.6"/>
+                        <path d="M75 20 C90 5, 120 10, 140 20 C120 30, 90 35, 75 20 Z" fill="#C9A66B" opacity="0.6"/>
+                        <circle cx="75" cy="20" r="5" fill="#4A151C"/>
+                        <path d="M10 20 L0 20 M140 20 L150 20" stroke="#C9A66B" stroke-width="1.5"/>
+                    </svg>
+                </div>
+
+                <h2 class="text-4xl md:text-5xl font-heading text-themeDark mb-4">Save the Date</h2>
+                <p class="font-body text-themeDark/80 mb-12 text-lg italic">We look forward to celebrating this special day with you.</p>
+
+                <div class="flex flex-wrap justify-center gap-4 md:gap-8 text-center font-heading" id="countdown">
+                    <div class="w-20 h-20 md:w-28 md:h-28 flex flex-col items-center justify-center bg-white/70 border border-themeAccent/40 rounded-sm shadow-sm text-themeDark relative overflow-hidden">
+                        <span id="days" class="text-2xl md:text-4xl font-bold relative z-10">00</span>
+                        <span class="text-[10px] md:text-xs uppercase tracking-widest text-themeDark/70 mt-1 font-body relative z-10">Days</span>
+                    </div>
+                    <div class="w-20 h-20 md:w-28 md:h-28 flex flex-col items-center justify-center bg-white/70 border border-themeAccent/40 rounded-sm shadow-sm text-themeDark relative overflow-hidden">
+                        <span id="hours" class="text-2xl md:text-4xl font-bold relative z-10">00</span>
+                        <span class="text-[10px] md:text-xs uppercase tracking-widest text-themeDark/70 mt-1 font-body relative z-10">Hours</span>
+                    </div>
+                    <div class="w-20 h-20 md:w-28 md:h-28 flex flex-col items-center justify-center bg-white/70 border border-themeAccent/40 rounded-sm shadow-sm text-themeDark relative overflow-hidden">
+                        <span id="minutes" class="text-2xl md:text-4xl font-bold relative z-10">00</span>
+                        <span class="text-[10px] md:text-xs uppercase tracking-widest text-themeDark/70 mt-1 font-body relative z-10">Minutes</span>
+                    </div>
+                    <div class="w-20 h-20 md:w-28 md:h-28 flex flex-col items-center justify-center bg-white/70 border border-themeAccent/40 rounded-sm shadow-sm text-themeDark relative overflow-hidden">
+                        <span id="seconds" class="text-2xl md:text-4xl font-bold relative z-10">00</span>
+                        <span class="text-[10px] md:text-xs uppercase tracking-widest text-themeDark/70 mt-1 font-body relative z-10">Seconds</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <footer class="bg-themeSection py-8 text-center text-themeDark/70 font-body text-sm relative z-30 border-t border-themeAccent/20">
+            <p>Made with ❤️ for Aswin & Navaneetha's Wedding</p>
+        </footer>
+
+    </main>
+
+    <!-- Scripts -->
+    <script>
+        // 1. Overlay & Local Audio Trigger
+        document.getElementById('open-invitation').addEventListener('click', () => {
+            const overlay = document.getElementById('welcome-overlay');
+            
+            // Instantly stop the overlay from blocking clicks
+            overlay.style.pointerEvents = 'none'; 
+            overlay.style.opacity = '0';
+            
+            setTimeout(() => {
+                overlay.style.display = 'none';
+            }, 1000);
+            
+            // Play the local MP3 file
+            const audio = document.getElementById('music-player');
+            if (audio) {
+                audio.play().catch(error => {
+                    console.log("Audio playback failed:", error);
+                });
+            }
+        });
+
+        // 2. Intersection Observer for Fade-In Animations
+        document.addEventListener("DOMContentLoaded", function() {
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                    }
+                });
+            }, { threshold: 0.1 });
+
+            document.querySelectorAll('.fade-in').forEach((el) => observer.observe(el));
+        });
+
+        // 3. Countdown Timer Logic (Targeting Dec 31, 2026 10:30 AM)
+        const countDownDate = new Date("Dec 31, 2026 10:30:00").getTime();
+        const countdownTimer = setInterval(function() {
+            const now = new Date().getTime();
+            const distance = countDownDate - now;
+            
+            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+            
+            document.getElementById("days").innerHTML = days.toString().padStart(2, '0');
+            document.getElementById("hours").innerHTML = hours.toString().padStart(2, '0');
+            document.getElementById("minutes").innerHTML = minutes.toString().padStart(2, '0');
+            document.getElementById("seconds").innerHTML = seconds.toString().padStart(2, '0');
+            
+            if (distance < 0) {
+                clearInterval(countdownTimer);
+                document.getElementById("countdown").innerHTML = "<div class='text-2xl md:text-3xl font-heading text-themeDark'>The Celebration Has Begun!</div>";
+            }
+        }, 1000);
+    </script>
+</body>
+</html>
